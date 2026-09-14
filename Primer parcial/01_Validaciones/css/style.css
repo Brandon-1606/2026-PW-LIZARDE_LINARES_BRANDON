@@ -11,13 +11,13 @@ body {
 
 header {
     background-color: #0f172a;
-    color: #ffff;
+    color: #ffffff;
     padding: 1.5rem;
     text-align: center;
 }
 
 header a {
-    color: #ffff;
+    color: #ffffff;
 
 }
 
@@ -36,13 +36,13 @@ footer {
 
 /* Catalogo de Talleres */
 
-.catalogo {
+.Catalogo {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
 }
 
-.tarjeta {
+.Tarjeta {
     background-color: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
@@ -61,4 +61,80 @@ footer {
 
 .tarjeta a:hover {
     text-decoration: underline;
+}
+
+/* Formulario de Registro */
+.Volver {
+    border: 1px solid #0f172a;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #3368A0;
+    text-decoration: none;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.Volver:hover {
+    background-color: #66A3BF;
+}
+
+.Volver2 {
+    border: 1px solid #0f172a;
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: #3368A0;
+    text-decoration: none;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    margin: 1rem;
+    width: auto;
+    display: inline-block;
+    text-align: center;
+}
+
+.Volver2:hover {
+    background-color: #66A3BF;
+}
+
+button {
+    border: 1px solid #0f172a;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #3368A0;
+    text-decoration: none;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+
+input {
+    display: block;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-color:#1f2937;
+    padding: 0.3rem;
+}
+
+input:user-invalid {
+    border-color: #dc2626;
+    background-color: #fef2f2;
+
+}
+
+label {
+    font-size: 1.3rem;
+}
+
+.Body {
+    text-align: center;
+}
+
+button:hover {
+    background-color: #66A3BF;
+    text-decoration: underline;
+    text-decoration-style: solid;
 }
