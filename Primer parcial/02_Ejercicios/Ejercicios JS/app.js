@@ -104,6 +104,7 @@ formObjeto-addEventListener('submit', (evento) => {
             break;
 
         case 'entries':
+            resultado = Object.entries(taller).map(([campo, valor]) => `${campo}: ${valor}`).join('\n');
             break;
 
         case 'stringify':
