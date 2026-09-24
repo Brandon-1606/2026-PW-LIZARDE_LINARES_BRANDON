@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios con Node</title>
+    <link >
+</head>
+<body>
+    <header>
+        <h1>Ejercicios con node</h1>
+    </header>
+    <main>
+        <section clas="ejercicio">
+            <h2 id="titulo-arreglos">Arreglos de codigo<code>01_arreglos.js</code></h2>
+            <p>Datos de prueba con js</p>
+            <div class="tabla-scroll">
+                <table id="tabla-talleres">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Instructor</th>
+                            <th>Cupo</th>
+                            <th>Incritos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <form id="formulario-arreglo" class="formulario">
+                <div class="campos">
+                    <label for="operacion-arreglo" name="operacion-arreglo">Operacion</label>
+                    <select name="operacion-arreglos" id="operacion-arreglo">
+                        <option value="forEach">forEach - Lista Simple</option>
+                        <option value="map">map - Copia solo Nombres</option>
+                        <option value="filter">filter - Filtrar talleres con cupo lleno</option>
+                        <option value="find">find - Buscar por el nombre del instructor</option>
+                        <option value="reduce">reduce - Sumar todos los inscritos</option>
+                        <option value="filterMap">filterMap - Talleres con cupo disponible</option>
+                    </select>
+                </div>
+
+                <button type="submit">Ejecutar</button>
+
+            </form>
+
+            <output class="resultado" id="resultado-arreglo" for="form-arreglo"></output>
+
+        </section>
+
+        <section class="ejercicio" aria-labelledby="titulo-objeto">
+            <h2 id="titulo-objeto">Segunda parte de ejercicios manejo de objetos y Json</h2>
+            <p>Edita el taller y elige que operacion aplicarle</p>
+            
+            <form class="formulario" id="form-objeto">
+                <div class="campo">
+                    <label for="obj-nombre">Nombre</label>
+                    <input type="text" id="obj-nombre" name="obj-nombre" value="Introduccion a Python"> 
+                </div>
+                <div class="campo campo-corta">
+                    <label for="obj-instructor">Instructor</label>
+                    <input type="text" id="obj-instructor" name="obj-instructor" value="Ing. Maria Lopez"> 
+                </div>
+                <div class="campo campo-corta">
+                    <label for="obj-cupo">Cupo</label>
+                    <input type="text" id="obj-cupo" name="obj-cupo" value="25" min="0"> 
+                </div>
+                <div class="campo campo-corta">
+                    <label for="obj-inscritos">Inscritos</label>
+                    <input type="text" id="obj-inscritos" name="obj-inscritos" value="25" min="0"> 
+                </div>
+
+                <div class="campo">
+                    <label for="operacion-objeto">Operacion a realizar</label>
+                    <select name="operacion-objeto" id="operacion-objeto">
+                        <option value="keys">Object.keys</option>
+                        <option value="values">Object.values</option>
+                        <option value="entries">Object.entries</option>
+                        <option value="stringify">Object.stringify</option>
+                        <option value="roundtrip">ida y vuelta de cadena JSON</option>
+                    </select>
+
+                </div>
+                <button type="submit">Ejecutar opcion de Objeto</button>
+            </form>
+            <output class="resultado" id="resultado-objeto" for="form-objeto"></output>
+        </section>
+
+    </main>
+
+    <script src="./Ejercicios JS/app.js"></script>
+</body>
+</html>
