@@ -89,6 +89,30 @@
             <output class="resultado" id="resultado-objeto" for="form-objeto"></output>
         </section>
 
+        <section class="ejercicio" aria-labelledby="titul-texto">
+            <h2 id="titulo-texto">3, Strings y Fechas</h2>
+            <p>La fecha usa el mismo formato <strong>DD/MM/AAAA</strong> validado con regex</p>
+
+            <form class="formulario" id="form-texto">
+                <div class="campo">
+                    <lable for="nombre-entrada">Nombre (con espacio de sobre a proposito)</lable>
+                    <input type="text" id="nombre-entrada" name="nombre-entrada" value="Maria Lopez">
+                </div>
+                <div class="campo">
+                    <lable for="cupo-entrada">Cupo (Para el templete)</lable>
+                    <input type="number" id="cupo-entrada" name="cupo-entrada" value="25" min="0">
+
+                </div>
+                <div class="campo">
+                    <lable for="fecha-entrada">Fecha de asistencia (DD/MM/AAAA)</lable>
+                    <input type="text" id="fecha-entrada" name="fecha-entrada" value="05/09/2026">
+                    <span class="error" id="error-fecha"></span>
+                </div>
+                <button type="submit">Ejecutar</button>
+            </form>
+            <output class="resultado" id="resultado-texto" for="form-texto" ></output>
+        </section>
+
     </main>
 
     <script src="./Ejercicios JS/app.js"></script>
