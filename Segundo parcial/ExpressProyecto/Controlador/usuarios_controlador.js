@@ -81,4 +81,4 @@ async function eliminarUsuario(req, res) {
     }
 }
 
-module.exports = {listarUsuarios, obtenerUsuario, crearUsuario,  actualizarUsuario, eliminarUsuario}
+module.exports = {listarUsuarios, obtenerUsuario, crearUsuario,  actualizarUsuario, eliminarUsuario};
