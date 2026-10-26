@@ -6,6 +6,8 @@ import { formatearFecha, ocultarBoleta } from '../../lib/formato';
 import { validarBoleta } from '../../lib/validaciones';
 import estilos from '../../styles/Talleres.module.css';
 
+// PASO 4 de la guía: detalle del taller y su lista de asistencias.
+// PASO 5 de la guía: formulario de inscripción con petición POST /api/asistencias.
 export default function DetalleTaller() {
   const router = useRouter();
   const { id } = router.query;

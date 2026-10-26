@@ -5,6 +5,7 @@ import { formatearFecha } from '../lib/formato';
 import { validarBoleta } from '../lib/validaciones';
 import estilos from '../styles/Talleres.module.css';
 
+// PASO 6 de la guía: consulta el perfil por boleta y ejecuta Promise.all para cargar la asistencia de cada taller en paralelo.
 export default function Perfil() {
   const [boleta, setBoleta] = useState('');
   const [buscada, setBuscada] = useState('');
@@ -29,6 +30,7 @@ export default function Perfil() {
       const usuarios = await pedirJSON('/usuarios');
       const talleres = await pedirJSON('/talleres');
 
+      // Promise.all para hacer las peticiones en paralelo de cada taller
       const listas = await Promise.all(
         talleres.map((t) => pedirJSON(`/talleres/${t.id}/asistencias`))
       );
@@ -66,6 +68,7 @@ export default function Perfil() {
   return (
     <main>
       <h1>Mi perfil</h1>
+
       <form onSubmit={buscar} className="formulario">
         <input
           placeholder="Tu boleta (10 dígitos)"
