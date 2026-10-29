@@ -1,6 +1,12 @@
-// Validación auxiliar: comprueba que la boleta contenga exactamente 10 dígitos numéricos
 export function validarBoleta(boleta) {
-  if (!boleta) return false;
-  const b = boleta.trim();
-  return /^\d{10}$/.test(b);
+  return typeof boleta === 'string' && /^\d{10}$/.test(boleta.trim());
+}
+
+export function validarCorreo(correo) {
+  if (typeof correo !== 'string') return false;
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo.trim());
+}
+
+export function validarRol(rol) {
+  return typeof rol === 'string' && ['alumno', 'admin'].includes(rol.trim().toLowerCase());
 }

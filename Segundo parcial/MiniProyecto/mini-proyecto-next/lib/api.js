@@ -1,5 +1,4 @@
-// Todas las peticiones al backend pasan por aquí, para no repetir en cada página el mismo manejo de errores.
-// La ruta es relativa (/api/...): next.config.js la reenvía al backend del puerto 3001.
+// Las peticiones pasan por la API de Next, que las reenvía al backend en el puerto 3001.
 const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
 const BACKEND_CAIDO = 'El backend no responde: arráncalo con npm start en backend-memoria (puerto 3001).';
 

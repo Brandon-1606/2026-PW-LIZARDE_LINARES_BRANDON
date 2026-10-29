@@ -71,6 +71,10 @@ export default function Perfil() {
 
       <form onSubmit={buscar} className="formulario">
         <input
+          type="text"
+          inputMode="numeric"
+          pattern="[0-9]{10}"
+          maxLength={10}
           placeholder="Tu boleta (10 dígitos)"
           value={boleta}
           onChange={(e) => setBoleta(e.target.value)}

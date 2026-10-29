@@ -1,20 +1,22 @@
-//Vamos a tener funciones que se encargan de validar correo, boleta y contraseña 
+const ROLES_VALIDOS = ['alumno', 'admin'];
 
-//Aqui va funcion de correo
-function validarCorreo(correo){
+function validarCorreo(correo) {
+    if (typeof correo !== 'string') return false;
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(correo);
-}
-//Aqui va funcion de boleta
-function validarBoleta(boleta){
-    const regex = /^\d{8}$/;
-    return regex.test(boleta);
+    return regex.test(correo.trim());
 }
 
+function validarBoleta(boleta) {
+    return typeof boleta === 'string' && /^\d{10}$/.test(boleta.trim());
+}
 
-function validarContrasena(contrasena){
+function validarRol(rol) {
+    return typeof rol === 'string' && ROLES_VALIDOS.includes(rol.trim().toLowerCase());
+}
+
+function validarContrasena(contrasena) {
     if (typeof contrasena !== 'string') return false;
-    return contrasena.length >= 8;
+    return contrasena.trim().length >= 8;
 }
 
-module.exports = {validarCorreo, validarBoleta, validarContrasena};
+module.exports = {validarCorreo, validarBoleta, validarContrasena, validarRol};

@@ -130,6 +130,10 @@ export default function DetalleTaller() {
             onChange={(e) => setNombre(e.target.value)}
           />
           <input
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]{10}"
+            maxLength={10}
             placeholder="Boleta (10 dígitos)"
             value={boleta}
             onChange={(e) => setBoleta(e.target.value)}

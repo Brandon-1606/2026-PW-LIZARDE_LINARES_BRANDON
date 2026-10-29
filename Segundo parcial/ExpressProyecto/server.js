@@ -1,5 +1,6 @@
 const express = require('express');
 const db = require('./db-local.js');
+const { validarBoleta, validarCorreo, validarRol } = require('./validaciones');
 
 const app = express();
 
@@ -56,11 +57,14 @@ app.post('/api/asistencias', async (req, res) => {
     if (!taller_id || !nombre_alumno || !boleta) {
       return res.status(400).json({ error: "taller_id, nombre_alumno y boleta son obligatorios" });
     }
+    if (!validarBoleta(boleta)) {
+      return res.status(400).json({ error: "La boleta debe tener exactamente 10 dígitos" });
+    }
 
     const id = require('crypto').randomUUID();
     await db.query(
       'INSERT INTO asistencias (id, taller_id, nombre_alumno, boleta, fecha_registro) VALUES (?, ?, ?, ?, NOW())',
-      [id, taller_id, nombre_alumno, boleta]
+      [id, taller_id, nombre_alumno.trim(), boleta.trim()]
     );
 
     const [nueva] = await db.query('SELECT * FROM asistencias WHERE id = ?', [id]);
@@ -99,11 +103,11 @@ app.post('/api/usuarios', async (req, res) => {
     if (!nombre || !correo || !contrasena || !boleta) {
       return res.status(400).json({ error: "nombre, correo, contrasena y boleta son obligatorios" });
     }
-    if (!correo.includes('@')) {
+    if (!validarCorreo(correo)) {
       return res.status(400).json({ error: "El correo no tiene un formato válido" });
     }
-    if (boleta.length !== 10) {
-      return res.status(400).json({ error: "La boleta debe tener 10 dígitos" });
+    if (!validarBoleta(boleta)) {
+      return res.status(400).json({ error: "La boleta debe tener exactamente 10 dígitos" });
     }
     if (contrasena.length < 8) {
       return res.status(400).json({ error: "La contraseña debe tener al menos 8 caracteres" });
@@ -114,15 +118,15 @@ app.post('/api/usuarios', async (req, res) => {
 
     const [result] = await db.query(
       'INSERT INTO usuarios (nombre, correo, contrasena_hash, boleta, rol) VALUES (?, ?, ?, ?, ?)',
-      [nombre, correo, hash, boleta, 'alumno']
+      [nombre.trim(), correo.trim().toLowerCase(), hash, boleta.trim(), 'alumno']
     );
 
     // Responde 201 Created sin devolver la contraseña (Paso 5.2)
     res.status(201).json({
       id: result.insertId,
-      nombre,
-      correo,
-      boleta,
+      nombre: nombre.trim(),
+      correo: correo.trim().toLowerCase(),
+      boleta: boleta.trim(),
       rol: 'alumno'
     });
   } catch (error) {
@@ -160,6 +164,12 @@ app.put('/api/usuarios/:id', async (req, res) => {
     if (!nombre && !correo && !rol) {
       return res.status(400).json({ error: "Envía al menos uno de: nombre, correo, rol" });
     }
+    if (correo !== undefined && !validarCorreo(correo)) {
+      return res.status(400).json({ error: "El correo no tiene un formato válido" });
+    }
+    if (rol !== undefined && !validarRol(rol)) {
+      return res.status(400).json({ error: "El rol debe ser alumno o admin" });
+    }
 
     const [userExists] = await db.query('SELECT * FROM usuarios WHERE id = ?', [id]);
     if (userExists.length === 0) {
@@ -168,8 +178,8 @@ app.put('/api/usuarios/:id', async (req, res) => {
 
     const current = userExists[0];
     const newNombre = nombre !== undefined ? nombre : current.nombre;
-    const newCorreo = correo !== undefined ? correo : current.correo;
-    const newRol = rol !== undefined ? rol : current.rol;
+    const newCorreo = correo !== undefined ? correo.trim().toLowerCase() : current.correo;
+    const newRol = rol !== undefined ? rol.trim().toLowerCase() : current.rol;
 
     await db.query(
       'UPDATE usuarios SET nombre = ?, correo = ?, rol = ? WHERE id = ?',
@@ -210,4 +220,3 @@ app.delete('/api/usuarios/:id', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`El servidor escuchando en el puerto: ${PORT}`);
 })
-
